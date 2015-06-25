@@ -1,0 +1,13 @@
+body {
+    text-align: -moz-center;
+    text-align: -webkit-center;
+}
+#latexContainer {
+    display: inline-block;
+}
+pre {
+    text-align: left;
+}
+.matriceDiv {
+    display: inline-block;
+}
