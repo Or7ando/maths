@@ -1,9 +1,9 @@
-var MT = MT || {};
+var MT = MT || {}; //On stocke tout dans l'objet MT (maths tools) pour ne pas polluer l'espace global
 
 var genbutton = document.getElementById('genButton');
 var maincontainer = document.getElementById('mainContainer');
 
-MT.matrice = function(n,p) {
+MT.matrix = function(n,p) {
     this.n = n ? n : Math.floor(9*Math.random()+1);
     this.p = p ? p : this.n;
     console.log('n: '+this.n+', p: '+this.p);
@@ -18,10 +18,10 @@ MT.matrice = function(n,p) {
     this.div = document.createElement('div');
     this.div.classList.add('matriceDiv');
 }
-MT.matrice.prototype.genCoeff = function() {
+MT.matrix.prototype.genCoeff = function() {
     return Math.floor(19*Math.random()-9);
 }
-MT.matrice.prototype.genLatex = function() {
+MT.matrix.prototype.genLatex = function() {
     this.latexString = '\\begin{pmatrix}\n';
     this.latexPre = document.createElement('pre');
     for(var i=0;i<this.n;i++) {
@@ -39,16 +39,16 @@ MT.matrice.prototype.genLatex = function() {
     this.div.appendChild(this.latexPre);
     return this.latexString;
 }
-MT.matrice.prototype.genMathJax = function() {
+MT.matrix.prototype.genMathJax = function() {
     this.mathJaxContainer = document.createElement('div');
     this.div.appendChild(this.mathJaxContainer);
     this.mathJaxContainer.innerHTML = '$$'+this.latexString+'$$';
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 }
 genbutton.addEventListener('click', function() {
-    var matrice = new MT.matrice();
-    //console.log(matrice);
-    matrice.genLatex();
-    maincontainer.appendChild(matrice.div);
-    matrice.genMathJax();
+    var matrix = new MT.matrix();
+    //console.log(matrix);
+    matrix.genLatex();
+    maincontainer.appendChild(matrix.div);
+    matrix.genMathJax();
 });
